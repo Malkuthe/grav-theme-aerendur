@@ -1,0 +1,9 @@
+#body {
+  background-color: {{ theme_config.colours.background }} ;
+  {% set bgImage %}
+    {% for key,value in theme_config.image.background %}
+      url('{{ value.path }}')
+    {% endfor %}
+  {% endset %}
+  background-image: {{ bgImage }};
+}
