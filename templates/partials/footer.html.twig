@@ -1,0 +1,21 @@
+{% if theme_config.footer.custom_html.enabled %}
+  {{ theme_config.footer.custom_html.content|markdown }}
+{% else %}
+  {% set columns %}
+    {% if theme_config.footer.content|length > 0 %}
+      {{ 12 // theme_config.footer.content|length }}
+    {% else %}
+     {{ 12 }}
+    {% endif %}
+  {% endset %}
+  {% for column in theme_config.footer.content %}
+    <div class="small-12 medium-{{ columns }} columns">
+      <span class="footer-column-header">
+        {{ column.header }}
+      </span>
+      <div class="footer-column-content">
+        {{ column.content|markdown }}
+      </div>
+    </div>
+  {% endfor %}
+{% endif %}
