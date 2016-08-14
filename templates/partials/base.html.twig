@@ -18,6 +18,9 @@
         {% if theme_config.css_aerendur.enabled or theme_config.css_aerendur.enabled is not defined %}
           {% do assets.addCss('theme://css/aerendur.css',110) %}
         {% endif %}
+        {% if theme_config.css_child_theme.enabled or theme_config.css_child_theme.enabled is not defined %}
+          {% do assets.addCss('theme://css/template.css',109) %}
+        {% endif %}
         {% if theme_config.css_custom.enabled %}
           {% do assets.addCss('theme://css/custom.css',10) %}
         {% endif %}
@@ -44,22 +47,40 @@
 <body id="top" class="{{ page.header.body_classes }}">
 
 {% block header %}
+  <div class="header">
+  {% if page.header.header == "disabled" %}
+  {% elseif page.header.header == "enabled" or theme_config.header.enabled %}
     <div class="header">
-        <div class="wrapper padding">
-            <a class="logo left" href="{{ base_url == '' ? '/' : base_url }}">
-                <i class="fa fa-rebel"></i>
-                {{ config.site.title }}
-            </a>
-            {% block header_navigation %}
-            <nav class="main-nav">
-                {% include 'partials/navigation.html.twig' %}
-            </nav>
-            {% endblock %}
-        </div>
+      <div class="wrapper">
+        {% block branding %}
+          {% include 'partials/branding.html.twig' %}
+        {% endblock branding %}
+        {% block header_navigation %}
+          <nav class="main-nav">
+            {% include 'partials/navigation.html.twig' %}
+          </nav>
+        {% endblock header_navigation %}
+      </div>
     </div>
+  {% endif %}
+  </div>
 {% endblock %}
 
 {% block body %}
+    <div class="background-image-container">
+      <div class="background-image-src">
+      </div>
+      {% if page.header.background_blur == "disabled" %}
+      {% elseif page.header.background_blur == "enabled" or theme_config.customization.global.background_blur.enabled %}
+        <div class="background-image-src blurred-image">
+        </div>
+      {% endif %}
+      {% if page.header.background_gradient == "disabled" %}
+      {% elseif page.header.background_gradient == "enabled" or theme_config.customization.global.background_blur.enabled %}
+        <div class="background-gradient">
+        </div>
+      {% endif %}
+    </div>
     <section id="body">
         <div class="wrapper padding">
         {% block content %}{% endblock %}
@@ -68,11 +89,6 @@
 {% endblock %}
 
 {% block footer %}
-    <div class="footer text-center">
-        <div class="wrapper padding">
-            <p><a href="http://getgrav.org">Grav</a> was <i class="fa fa-code"></i> with <i class="fa fa-heart"></i> by <a href="http://www.rockettheme.com">RocketTheme</a>.</p>
-        </div>
-    </div>
 {% endblock %}
 
 {% block bottom %}

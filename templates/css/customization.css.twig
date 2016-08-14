@@ -1,9 +1,33 @@
+{# Variables #}
+
+{% set bgImage %}
+  {% for key,value in theme_config.customization.global.landscape_background %}
+    url('{{ value.path }}')
+  {% endfor %}
+{% endset %}
+{% set bgImageSmall %}
+  {% for key,value in theme_config.customization.global.portrait_background %}
+    url('{{ value.path }}')
+  {% endfor %}
+{% endset %}
+
+{# CSS #}
+
 #body {
-  background-color: {{ theme_config.colours.background }} ;
-  {% set bgImage %}
-    {% for key,value in theme_config.image.background %}
-      url('{{ value.path }}')
-    {% endfor %}
-  {% endset %}
-  background-image: {{ bgImage }};
+  background-color: {{ theme_config.customization.global.background_color }} ;
 }
+
+.background-image-src {
+  position: absolute;
+  background-size: cover;
+  background-repeat: no-repeat;
+  top: -10%;
+  bottom: 10%;
+  left: -10%;
+  right: 10%;
+  width: 120%;
+  height: 120%;
+  background: {{ bgImageSmall }} center center; }
+  @media screen and (min-width: 40em) {
+    .background-image-src {
+      background: {{ bgImage }} center center; } }

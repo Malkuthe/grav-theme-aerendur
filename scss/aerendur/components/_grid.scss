@@ -1,0 +1,7 @@
+#body {
+  @include grid-row();
+}
+
+#body .wrapper {
+  @include grid-column(12,1rem);
+}

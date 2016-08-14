@@ -1,15 +1,15 @@
 name: Aerendur
-version: 0.2.0
+version: 0.3.0
 description: A simple base theme for using Zurb Foundation with Grav
 icon: rebel
 author:
   name: Malkuthe Highwind
   email: malkuthe@themanyworlds.net
-homepage: https://github.com/malkuthe-highwind/grav-theme-aerendur
+homepage: https://github.com/malkuthe/grav-theme-aerendur
 demo: http://demo.yoursite.com
 keywords: aerndur, theme, foundation, core, simple, responsive, basic
-bugs: https://github.com/malkuthe-highwind/grav-theme-aerendur/issues
-readme: https://github.com/malkuthe-highwind/grav-theme-aerendur/blob/develop/README.md
+bugs: https://github.com/malkuthe/grav-theme-aerendur/issues
+readme: https://github.com/malkuthe/grav-theme-aerendur/README.md
 license: MIT
 
 form:
@@ -77,6 +77,48 @@ form:
                           label: |
                             <p style="padding-left:0;"><em>"Foundation is semantic, readable, flexible, and completely customizable. We're constantly adding new resources and code snippets, including these handly HTML templates to help get you started!"</em></p>
                             <p style="padding-left:0;"><a href="http://foundation.zurb.com/" target="_blank">Foundation Homepage <i class="fa fa-external-link"></i></a><br /><a href="http://foundation.zurb.com/sites/docs/" target="_blank">Foundation Docs <i class="fa fa-external-link"></i></a></p>
+        customization:
+          type: tab
+          title: Customization
+          fields:
+
+            customization.global:
+              type: section
+              title: Site-Wide Customization
+              underline: 1
+              fields:
+
+                customization.global.landscape_background:
+                  type: file
+                  label: Background Image
+                  destination: 'user/themes/aerendur/images/'
+                  blueprint: 'themes.aerendur'
+                  accept:
+                    - image/*
+                customization.global.portrait_background:
+                  type: file
+                  label: Background Image(Small)
+                  destination: 'user/themes/aerendur/images/'
+                  blueprint: 'themes.aerendur'
+                  accept:
+                    - image/*
+                customization.global.background_blur.enabled:
+                  type: toggle
+                  label: Background Blur Effect
+                  highlight: 1
+                  default: 1
+                  options:
+                    1: Enabled
+                    0: Disabled
+                  validate:
+                    type: bool
+                customization.global.background_color:
+                  type: colorpicker
+                  label: Background colours
+                  default: '#aecef2'
+                  validate:
+                    type: text
+
         general_options:
           type: tab
           title: Options
@@ -133,9 +175,9 @@ form:
                 0: Disabled
               validate:
                 type: bool
-            mobile_menu_breakpoint:
+            mobile_navigation_breakpoint:
               type: select
-              label: Mobile Menu Breakpoint
+              label: Mobile Navigation Menu Breakpoint
               classes: fancy
               size: small
               default: medium
@@ -143,15 +185,46 @@ form:
                 'large': 'Large'
                 'medium': 'Medium'
                 'all': 'Mobile for All'
-            mobile_menu_position:
+            mobile_navigation_position:
               type: select
-              label: Mobile Menu Position
+              label: Mobile Navigation Menu Position
               classes: fancy
               size: small
               default: left
               options:
                 'left': 'Left'
                 'right': 'Right'
+            header.enabled:
+              type: toggle
+              label: Menu
+              highlight: 1
+              default: 1
+              options:
+                1: Enabled
+                0: Disabled
+              validate:
+                type: bool
+            mobile_header.enabled:
+              type: toggle
+              label: Mobile Menu
+              highlight: 1
+              default: 1
+              options:
+                1: Enabled
+                0: Disabled
+              validate:
+                type: bool
+            site_branding:
+              type: select
+              label: Site Branding
+              classes: fancy
+              size: small
+              default: both
+              options:
+                'logo': 'Logo Only'
+                'title': 'Title Only'
+                'both': 'Logo and Title Together'
+
 
         javascript_options:
           type: tab
@@ -894,35 +967,3 @@ form:
                             0: Disabled
                           validate:
                             type: bool
-
-
-        customization:
-          type: tab
-          title: Customization
-          fields:
-
-            frontpage:
-              type: section
-              title: Site-Wide Customization
-              underline: 1
-              fields:
-
-                medium.image.background:
-                  type: file
-                  label: Background Image
-                  destination: 'user/themes/aerendur/images/'
-                  blueprint: 'themes.aerendur'
-                  accept:
-                    - image/*
-                small.image.background:
-                  type: file
-                  label: Background Image(Small)
-                  destination: 'user/themes/aerendur/images/'
-                  blueprint: 'themes.aerendur'
-
-    colours.background:
-        type: colorpicker
-        label: Background colours
-        default: '#aecef2'
-        validate:
-          type: text

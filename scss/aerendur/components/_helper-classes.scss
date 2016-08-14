@@ -1,0 +1,11 @@
+.show-medium {
+  @include breakpoint(medium) {
+    visibility: none;
+  };
+}
+
+.show-small-only {
+  @include breakpoint(small only) {
+    visibility: none;
+  };
+}
