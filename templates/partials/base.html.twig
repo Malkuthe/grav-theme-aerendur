@@ -89,6 +89,18 @@
 {% endblock %}
 
 {% block footer %}
+  {% if page.header.footer == "disabled" %}
+  {% elseif page.header.footer == "enabled" or theme_config.footer.enabled %}
+    <div class="footer-content">
+      {% include 'partials/footer.html.twig' %}
+    </div>
+    {% if page.header.attribution == "disabled" %}
+    {% elseif page.header.attribution == "disabled" or theme_config.attribution.enabled %}
+      <div class="footer-attribution">
+        {{ theme_config.footer.attribution|markdown }}
+      </div>
+    {% endif %}
+  {% endif %}
 {% endblock %}
 
 {% block bottom %}

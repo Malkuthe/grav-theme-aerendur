@@ -225,6 +225,46 @@ form:
                 'title': 'Title Only'
                 'both': 'Logo and Title Together'
 
+            footer_options_title:
+              type: section
+              title: Footer Options
+              underline: true
+
+            footer_options_tabs:
+              type: tabs
+              fields:
+
+                general_footer_options_tab:
+                  type: tab
+                  title: General
+                  fields:
+
+                    general_footer_options_title:
+                      type: section
+                      title: General Footer Options
+                      underline: true
+
+                    footer.enabled:
+                      type: toggle
+                      label: Enable Footer
+                      highlight: 1
+                      default: 1
+                      options:
+                        1: Enabled
+                        0: Disabled
+                      validate:
+                        type: bool
+                    footer.content:
+                      label: Footer Content
+                      type: list
+                      fields:
+                        .header:
+                          type: text
+                          label: Header
+                        .content:
+                          type: markdown
+                          label: Content 
+
 
         javascript_options:
           type: tab
