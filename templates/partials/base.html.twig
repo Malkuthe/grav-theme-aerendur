@@ -91,7 +91,7 @@
 {% block footer %}
   {% if page.header.footer == "disabled" %}
   {% elseif page.header.footer == "enabled" or theme_config.footer.enabled %}
-    <div class="footer-content">
+    <div class="footer-content row">
       {% include 'partials/footer.html.twig' %}
     </div>
     {% if page.header.attribution == "disabled" %}
