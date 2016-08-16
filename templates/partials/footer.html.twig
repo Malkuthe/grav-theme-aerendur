@@ -3,19 +3,14 @@
 {% else %}
   {% set columns %}
     {% if theme_config.footer.content|length > 0 %}
-      {{ 12 // theme_config.footer.content|length }}
+      medium-{{ 12 // theme_config.footer.content|length }}
     {% else %}
-     {{ 12 }}
+      medium-{{ 12 }}
     {% endif %}
   {% endset %}
   {% for column in theme_config.footer.content %}
-    <div class="small-12 medium-{{ columns }} columns">
-      <span class="footer-column-header">
-        {{ column.header }}
-      </span>
-      <div class="footer-column-content">
-        {{ column.content|markdown }}
-      </div>
+    <div class="small-12 {{columns}} columns footer-panel">
+      {{ column.contents|markdown }}
     </div>
   {% endfor %}
 {% endif %}
