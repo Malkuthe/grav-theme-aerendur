@@ -8,9 +8,22 @@
       medium-{{ 12 }}
     {% endif %}
   {% endset %}
+  <div class="footer-content row show-for-medium">
+    {% for column in theme_config.footer.content %}
+      <div class="{{columns}} columns footer-panel">
+        <div class="footer-panel-content">
+          {{ column.panel|markdown }}
+        </div>
+      </div>
+    {% endfor %}
+  </div>
   {% for column in theme_config.footer.content %}
-    <div class="small-12 {{columns}} columns footer-panel">
-      {{ column.contents|markdown }}
+    <div class="footer-content row show-for-small-only">
+      <div class="small-12 columns">
+        <div class="footer-panel-content">
+          {{ column.panel|markdown }}
+        </div>
+      </div>
     </div>
   {% endfor %}
 {% endif %}
