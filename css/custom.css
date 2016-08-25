@@ -64,14 +64,6 @@ blockquote {
 }
 
 /* Content Styling */
-.header .padding {
-    padding: 1rem 0;
-}
-
-.header {
-    background-color: #1F8DD6;
-    color: #eee;
-}
 
 .header a {
     color: #fff;
