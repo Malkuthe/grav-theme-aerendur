@@ -1,3 +1,11 @@
+.off-canvas-content {
+  background:rgba(0,0,0,0);
+}
+
+body {
+  background-color: rgba(0,255,0,0.5);
+}
+
 .background-image-container {
   display: block;
   padding: 0;
@@ -6,7 +14,8 @@
   bottom: 0;
   left: 0;
   right: 0;
-  z-index: -1;
+  z-index: -1000;
+  background-color: rgba(0,0,0,0);
 }
 
 .background-image-src {
@@ -17,8 +26,8 @@
   bottom: 10%;
   left: -10%;
   right: 10%;
-  width: 120%;
-  height: 120%;
+  width: 120vw;
+  height: 120vh;
   @include breakpoint(medium) {
     background: url('../../aerendur/images/landscape-bg.jpg') center center;
   }
@@ -37,7 +46,7 @@
 
 .background-gradient {
   position: absolute;
-  background-size: cover;
+  background-size: auto 100%;
   background-repeat: no-repeat;
   top: -10%;
   bottom: 10%;

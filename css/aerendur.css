@@ -956,6 +956,12 @@
   #body .wrapper:last-child:not(:first-child) {
     float: right; }
 
+.off-canvas-content {
+  background: transparent; }
+
+body {
+  background-color: rgba(0, 255, 0, 0.5); }
+
 .background-image-container {
   display: block;
   padding: 0;
@@ -964,7 +970,8 @@
   bottom: 0;
   left: 0;
   right: 0;
-  z-index: -1; }
+  z-index: -1000;
+  background-color: transparent; }
 
 .background-image-src {
   position: absolute;
@@ -974,8 +981,8 @@
   bottom: 10%;
   left: -10%;
   right: 10%;
-  width: 120%;
-  height: 120%;
+  width: 120vw;
+  height: 120vh;
   background: url("../../themes/aerendur/images/portrait-bg.jpg") center center; }
   @media screen and (min-width: 40em) {
     .background-image-src {
@@ -990,7 +997,7 @@
 
 .background-gradient {
   position: absolute;
-  background-size: cover;
+  background-size: auto 100%;
   background-repeat: no-repeat;
   top: -10%;
   bottom: 10%;

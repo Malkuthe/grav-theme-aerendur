@@ -45,67 +45,102 @@
 {% endblock head%}
 </head>
 <body id="top" class="{{ page.header.body_classes }}">
+<div class="off-canvas-wrapper">
+  <div class="off-canvas-wrapper-inside" data-off-canvas-wrapper>
 
-{% block header %}
-  <div class="header">
-  {% if page.header.header == "disabled" %}
-  {% elseif page.header.header == "enabled" or theme_config.header.enabled %}
-    <div class="header">
-      <div class="wrapper">
-        {% block branding %}
-          {% include 'partials/branding.html.twig' %}
-        {% endblock branding %}
-        {% block header_navigation %}
-          <nav class="main-nav">
-            {% include 'partials/navigation.html.twig' %}
-          </nav>
-        {% endblock header_navigation %}
-      </div>
+    <div class="off-canvas {{ page.header.menu.position ?: theme_config.menu.mobile.position }}" id="mobilemenu" data-off-canvas data-close-on-click="true">
+      Something should be in here.
     </div>
-  {% endif %}
-  </div>
-{% endblock %}
 
-{% block body %}
-    <div class="background-image-container">
-      <div class="background-image-src">
-      </div>
-      {% if page.header.background_blur == "disabled" %}
-      {% elseif page.header.background_blur == "enabled" or theme_config.customization.global.background_blur.enabled %}
-        <div class="background-image-src blurred-image">
-        </div>
-      {% endif %}
-      {% if page.header.background_gradient == "disabled" %}
-      {% elseif page.header.background_gradient == "enabled" or theme_config.customization.global.background_blur.enabled %}
-        <div class="background-gradient">
-        </div>
-      {% endif %}
-    </div>
-    <section id="body">
-        <div class="wrapper">
-        {% block content %}{% endblock %}
-        </div>
-    </section>
-{% endblock %}
+    <div class="off-canvas-content" data-off-canvas-content>
 
-{% block footer %}
-  {% if page.header.footer == "disabled" %}
-  {% elseif page.header.footer == "enabled" or theme_config.footer.enabled %}
-    <div class="footer-wrapper">
-      {% include 'partials/footer.html.twig' %}
-    </div>
-    {% if page.header.attribution == "disabled" %}
-    {% elseif page.header.attribution == "disabled" or theme_config.footer.attribution.enabled %}
-      <div class="footer-attribution-wrapper">
-        <div class="footer-attribution-content row">
-          <div class="footer-attribution small-12 columns">
-            {{ theme_config.footer.attribution.content|markdown }}
+      {% block header %}
+
+        {% if page.header.menu.enabled == "disabled" %}
+        {% elseif page.header.menu.enabled == "enabled" or theme_config.menu.enabled %}
+          <div class="header">
+            <div class="wrapper">
+
+              {% block branding %}
+
+                {% if page.header.menu.branding == "disabled" %}
+                {% elseif page.header.menu.branding == "enabled" or theme_config.menu.branding.enabled %}
+                  {% include 'partials/branding.html.twig' %}
+                {% endif %}
+
+              {% endblock branding %}
+
+              {% block navigation %}
+
+                {% if page.header.menu.navigation == "disabled" %}
+                {% elseif page.header.menu.navigation == "enabled" or theme_config.menu.navigation.enabled %}
+                  {% include 'partials/navigation.html.twig' %}
+                {% endif %}
+
+              {% endblock navigation %}
+
+              {% block login %}
+
+                {% if page.header.menu.login == "disabled" %}
+                {% elseif page.header.menu.login == "enabled" or theme_confug.menu.login.enabled %}
+                  {% include 'partials/login.html.twig' %}
+                {% endif %}
+
+              {% endblock login %}
+
+            </div>
           </div>
+        {% endif %}
+
+      {% endblock %}
+
+      {% block body %}
+
+        <div class="background-image-container">
+          <div class="background-image-src">
+          </div>
+          {% if page.header.background_blur == "disabled" %}
+          {% elseif page.header.background_blur == "enabled" or theme_config.customization.global.background_blur.enabled %}
+            <div class="background-image-src blurred-image">
+            </div>
+          {% endif %}
+          {% if page.header.background_gradient == "disabled" %}
+          {% elseif page.header.background_gradient == "enabled" or theme_config.customization.global.background_blur.enabled %}
+            <div class="background-gradient">
+            </div>
+          {% endif %}
         </div>
-      </div>
-    {% endif %}
-  {% endif %}
-{% endblock %}
+        <section id="body">
+            <div class="wrapper">
+            {% block content %}{% endblock %}
+            </div>
+        </section>
+
+      {% endblock %}
+
+      {% block footer %}
+        {% if page.header.footer == "disabled" %}
+        {% elseif page.header.footer == "enabled" or theme_config.footer.enabled %}
+          <div class="footer-wrapper">
+            {% include 'partials/footer.html.twig' %}
+          </div>
+          {% if page.header.attribution == "disabled" %}
+          {% elseif page.header.attribution == "disabled" or theme_config.footer.attribution.enabled %}
+            <div class="footer-attribution-wrapper">
+              <div class="footer-attribution-content row">
+                <div class="footer-attribution small-12 columns">
+                  {{ theme_config.footer.attribution.content|markdown }}
+                </div>
+              </div>
+            </div>
+          {% endif %}
+        {% endif %}
+      {% endblock %}
+
+    </div>
+
+  </div>
+</div>
 
 {% block bottom %}
     {% block javascripts %}
