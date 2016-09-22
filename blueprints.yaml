@@ -165,7 +165,7 @@ form:
               title: Menu Options
               underline: true
 
-            dropdown.enabled:
+            menu.dropdown.enabled:
               type: toggle
               label: Dropdown in Main Menu
               highlight: 1
@@ -175,7 +175,17 @@ form:
                 0: Disabled
               validate:
                 type: bool
-            mobile_navigation_breakpoint:
+            menu.mobile.enabled:
+              type: toggle
+              label: Enable Mobile Navigation Menu
+              highlight: 1
+              default: 1
+              options:
+                1: Enabled
+                0: Disabled
+              validate:
+                type: bool
+            menu.mobile.breakpoint:
               type: select
               label: Mobile Navigation Menu Breakpoint
               classes: fancy
@@ -185,16 +195,16 @@ form:
                 'large': 'Large'
                 'medium': 'Medium'
                 'all': 'Mobile for All'
-            mobile_navigation_position:
+            menu.mobile.position:
               type: select
               label: Mobile Navigation Menu Position
               classes: fancy
               size: small
               default: left
               options:
-                'left': 'Left'
-                'right': 'Right'
-            header.enabled:
+                'position-left': 'Left'
+                'position-right': 'Right'
+            menu.enabled:
               type: toggle
               label: Menu
               highlight: 1
@@ -204,9 +214,9 @@ form:
                 0: Disabled
               validate:
                 type: bool
-            mobile_header.enabled:
+            menu.navigation.enabled:
               type: toggle
-              label: Mobile Menu
+              label: Enable Menu Navigation
               highlight: 1
               default: 1
               options:
@@ -214,16 +224,48 @@ form:
                 0: Disabled
               validate:
                 type: bool
-            site_branding:
+            menu.login.enabled:
+              type: toggle
+              label: Enable Menu Login
+              highlight: 1
+              default: 1
+              options:
+                1: Enabled
+                0: Disabled
+              validate:
+                type: bool
+            menu.branding.enabled:
+              type: toggle
+              label: Enable Branding on Menu
+              highlight: 1
+              default: 0
+              options:
+                1: Enabled
+                0: Disabled
+              validate:
+                type: bool
+            menu.branding.mode:
               type: select
-              label: Site Branding
+              label: Branding Mode
               classes: fancy
               size: small
               default: both
               options:
-                'logo': 'Logo Only'
-                'title': 'Title Only'
-                'both': 'Logo and Title Together'
+                'both': Both
+                'logo': Logo Only
+                'name': Name Only
+            menu.branding.logo:
+              type: file
+              label: Branding Logo
+              destination: 'user/themes/aerendur/images/'
+              blueprint: 'themes.aerendur'
+              accept:
+                - image/*
+            menu.branding.name:
+              type: text
+              label: Branding Name
+              validate:
+                type: text
 
             footer_options_title:
               type: section
@@ -263,7 +305,7 @@ form:
                           label: Header
                         .content:
                           type: markdown
-                          label: Content 
+                          label: Content
 
 
         javascript_options:
