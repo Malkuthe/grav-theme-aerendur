@@ -45,71 +45,42 @@
 {% endblock head%}
 </head>
 <body id="top" class="{{ page.header.body_classes }}">
+  <div class="background-image-container">
+    <div class="background-image-src">
+    </div>
+    {% if page.header.background_blur == "disabled" %}
+    {% elseif page.header.background_blur == "enabled" or theme_config.customization.global.background_blur.enabled %}
+      <div class="background-image-src blurred-image">
+      </div>
+    {% endif %}
+    {% if page.header.background_gradient == "disabled" %}
+    {% elseif page.header.background_gradient == "enabled" or theme_config.customization.global.background_blur.enabled %}
+      <div class="background-gradient">
+      </div>
+    {% endif %}
+  </div>
+
 <div class="off-canvas-wrapper">
   <div class="off-canvas-wrapper-inside" data-off-canvas-wrapper>
 
-    <div class="off-canvas {{ page.header.menu.position ?: theme_config.menu.mobile.position }}" id="mobilemenu" data-off-canvas data-close-on-click="true">
-      Something should be in here.
-    </div>
-
+    {% if page.header.menu.mobile.enabled == "disabled" %}
+    {% elseif page.header.menu.mobile.enabled == "enabled" or theme_config.menu.mobile.enabled %}
+      <div class="off-canvas {{ 'position-' ~ theme_config.menu.mobile.position }} hide-for-{{ theme_config.menu.mobile.breakpoint }}" id="mobilemenu" data-off-canvas>
+        Something should be in here.
+      </div>
+    {% endif %}
     <div class="off-canvas-content" data-off-canvas-content>
 
       {% block header %}
 
         {% if page.header.menu.enabled == "disabled" %}
         {% elseif page.header.menu.enabled == "enabled" or theme_config.menu.enabled %}
-          <div class="header">
-            <div class="wrapper">
-
-              {% block branding %}
-
-                {% if page.header.menu.branding == "disabled" %}
-                {% elseif page.header.menu.branding == "enabled" or theme_config.menu.branding.enabled %}
-                  {% include 'partials/branding.html.twig' %}
-                {% endif %}
-
-              {% endblock branding %}
-
-              {% block navigation %}
-
-                {% if page.header.menu.navigation == "disabled" %}
-                {% elseif page.header.menu.navigation == "enabled" or theme_config.menu.navigation.enabled %}
-                  {% include 'partials/navigation.html.twig' %}
-                {% endif %}
-
-              {% endblock navigation %}
-
-              {% block login %}
-
-                {% if page.header.menu.login == "disabled" %}
-                {% elseif page.header.menu.login == "enabled" or theme_confug.menu.login.enabled %}
-                  {% include 'partials/login.html.twig' %}
-                {% endif %}
-
-              {% endblock login %}
-
-            </div>
-          </div>
+          {% include 'partials/navigation.html.twig' %}
         {% endif %}
 
       {% endblock %}
 
       {% block body %}
-
-        <div class="background-image-container">
-          <div class="background-image-src">
-          </div>
-          {% if page.header.background_blur == "disabled" %}
-          {% elseif page.header.background_blur == "enabled" or theme_config.customization.global.background_blur.enabled %}
-            <div class="background-image-src blurred-image">
-            </div>
-          {% endif %}
-          {% if page.header.background_gradient == "disabled" %}
-          {% elseif page.header.background_gradient == "enabled" or theme_config.customization.global.background_blur.enabled %}
-            <div class="background-gradient">
-            </div>
-          {% endif %}
-        </div>
         <section id="body">
             <div class="wrapper">
             {% block content %}{% endblock %}
@@ -121,7 +92,7 @@
       {% block footer %}
         {% if page.header.footer == "disabled" %}
         {% elseif page.header.footer == "enabled" or theme_config.footer.enabled %}
-          <div class="footer-wrapper">
+          <div id="footer" class="footer-wrapper">
             {% include 'partials/footer.html.twig' %}
           </div>
           {% if page.header.attribution == "disabled" %}
