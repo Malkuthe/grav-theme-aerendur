@@ -165,7 +165,7 @@ form:
               title: Menu Options
               underline: true
 
-            dropdown.enabled:
+            menu.dropdown.enabled:
               type: toggle
               label: Dropdown in Main Menu
               highlight: 1
@@ -214,16 +214,6 @@ form:
                 0: Disabled
               validate:
                 type: bool
-            menu.enabled:
-              type: toggle
-              label: Mobile Menu
-              highlight: 1
-              default: 1
-              options:
-                1: Enabled
-                0: Disabled
-              validate:
-                type: bool
             menu.navigation.enabled:
               type: toggle
               label: Enable Menu Navigation
@@ -254,6 +244,16 @@ form:
                 0: Disabled
               validate:
                 type: bool
+            menu.branding.mode:
+              type: select
+              label: Branding Mode
+              classes: fancy
+              size: small
+              default: both
+              options:
+                'both': Both
+                'logo': Logo Only
+                'name': Name Only
             menu.branding.logo:
               type: file
               label: Branding Logo
@@ -261,6 +261,11 @@ form:
               blueprint: 'themes.aerendur'
               accept:
                 - image/*
+            menu.branding.name:
+              type: text
+              label: Branding Name
+              validate:
+                type: text
 
             footer_options_title:
               type: section
