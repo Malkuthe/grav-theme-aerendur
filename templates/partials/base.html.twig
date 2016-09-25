@@ -66,7 +66,7 @@
     {% if page.header.menu.mobile.enabled == "disabled" %}
     {% elseif page.header.menu.mobile.enabled == "enabled" or theme_config.menu.mobile.enabled %}
       <div class="off-canvas {{ 'position-' ~ theme_config.menu.mobile.position }} hide-for-{{ theme_config.menu.mobile.breakpoint }}" id="mobilemenu" data-off-canvas>
-        Something should be in here.
+        {% include 'partials/mobile-menu.html.twig' %}
       </div>
     {% endif %}
     <div class="off-canvas-content" data-off-canvas-content>
@@ -75,7 +75,20 @@
 
         {% if page.header.menu.enabled == "disabled" %}
         {% elseif page.header.menu.enabled == "enabled" or theme_config.menu.enabled %}
-          {% include 'partials/navigation.html.twig' %}
+          {% if page.header.menu.mobile.enabled == "enabled" or theme_config.menu.mobile.enabled %}
+            <div class="menu-wrapper {{ 'show-for-' ~ theme_config.menu.mobile.breakpoint }}">
+              {% include 'partials/menu.html.twig' %}
+            </div>
+          {% else %}
+            {% include 'partials/menu.html.twig' %}
+          {% endif %}
+        {% endif %}
+
+        {% if page.header.menu.mobile.enabled == "disabled" %}
+        {% elseif page.header.menu.mobile.enabled == "enabled" or theme_config.menu.mobile.enabled %}
+          <div class="menu-wrapper {{ 'hide-for-' ~ theme_config.menu.mobile.breakpoint }}">
+            {% include 'partials/mobile-menu-bar.html.twig' %}
+          </div>
         {% endif %}
 
       {% endblock %}

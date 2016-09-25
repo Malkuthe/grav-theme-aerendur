@@ -1,6 +1,6 @@
 {% import _self as navigation %}
-<div class="menu-container row collapse expanded" data-sticky-container>
-  <div id="menu" class="menu {{ theme_config.menu.classes|join(' ') }} {{ page.header.menu.classes|join(' ') }} medium-12 columns sticky" data-sticky data-options="anchor: body; marginTop: 0; stickyOn: small;">
+<div class="menu-container row collapse expanded">
+  <div id="menu" class="menu {{ theme_config.menu.classes|join(' ') }} {{ page.header.menu.classes|join(' ') }} medium-12 columns">
     <div class="wrapper" >
       <nav class="row" data-equalizer="navigation" >
 
@@ -34,15 +34,25 @@
 
         {% block navigation %}
 
+          {% if page.header.menu.branding.enabled == "disabled" %}
+            {% set branding = 0 %}
+          {% elseif page.header.menu.branding.enabled == "enabled" or theme_config.menu.branding.enabled %}
+            {% set branding = 1 %}
+          {% else %}
+            {% set branding = 0 %}
+          {% endif %}
+          {% if page.header.menu.login.enabled == "disabled" %}
+            {% set login = 0 %}
+          {% elseif page.header.menu.login.enabled == "enabled" or theme_config.menu.login.enabled %}
+            {% set login = 1 %}
+          {% else %}
+            {% set login = 0 %}
+          {% endif %}
+          {% set navcolumns = 12 - (login * 3) - (branding * 3) %}
+
           {% if page.header.menu.navigation == "disabled" %}
           {% elseif page.header.menu.navigation == "enabled" or theme_config.menu.navigation.enabled %}
-            {% if page.header.menu.branding.enabled == "disabled" %}
-              <div class="navigation medium-9 columns" data-equalizer-watch="navigation">
-            {% elseif page.header.menu.branding.enabled != "enabled" and not theme_config.menu.branding.enabled %}
-              <div class="navigation medium-6 columns" data-equalizer-watch="navigation">
-            {% else %}
-              <div class="navigation medium-6 columns" data-equalizer-watch="navigation">
-            {% endif %}
+            <div class="navigation {{ 'medium-' ~ navcolumns }} columns" data-equalizer-watch="navigation">
               <ul>
                 {% if page.header.menu.dropdown.enabled == "disabled" %}
                 {% elseif page.header.menu.dropdown.enabled == "enabled" or theme_config.menu.dropdown.enabled %}
@@ -86,7 +96,7 @@
           {% elseif page.header.menu.login == "enabled" or theme_config.menu.login.enabled %}
             <div class="login medium-3 columns" data-equalizer-watch="navigation">
               {% if grav.user.username %}
-                Hello?
+                {{ 'PLUGIN_LOGIN.WELCOME'|t }} <strong>{{ grav.user.fullname ?: grav.user.username }}</strong> | <a class="logout" href="{{ uri.addNonce((base_url_relative ~ uri.path)|trim('/') ~ '/task' ~ config.system.param_sep ~ 'login.logout', 'logout-form', 'logout-nonce') }}"><i class="fa fa-unlock-alt" aria-hidden="true"></i> {{ 'PLUGIN_LOGIN.BTN_LOGOUT'|t }}</a>
               {% else %}
                 <a href="{{ config.plugin.login.route ? config.plugin.login.route : '/login' }}">
                   <i class="fa fa-unlock-alt" aria-hidden="true"></i> Login
