@@ -1,0 +1,19 @@
+<div class="menu-container row collapse expanded">
+  <div id="mobile-menu-bar" class="menu {{ theme_config.menu.mobile.classes|join(' ') }} {{ page.header.menu.mobile.classes|join(' ') }} small-12 columns" data-toggle="mobilemenu">
+    <div class="wrapper">
+      <div class="title">
+        {% if page.header.menu.mobile.title %}
+          {{ page.header.menu.mobile.title }}
+        {% else %}
+          {{ theme_config.menu.mobile.title }}
+        {% endif %}
+      </div>
+      {% if page.header.menu.mobile.icon.enabled == "disabled" %}
+      {% elseif page.header.menu.mobile.icon.enabled == "enabled" or theme_config.menu.mobile.icon.enabled %}
+        <div class="icon">
+          <i class="fa fa-bars fa-2x"></i>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</div>

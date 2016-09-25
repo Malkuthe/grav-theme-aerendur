@@ -1,0 +1,83 @@
+{% import _self as navigation %}
+{% if page.header.menu.branding.enabled == "disabled" %}
+{% elseif page.header.menu.branding.enabled == "enabled" or theme_config.menu.branding.enabled %}
+  <div class="branding">
+    <a href="/">
+      {% if theme_config.menu.branding.mode == "logo" %}
+        <div class="logo">
+          <img src="/{{ (theme_config.menu.branding.logo|keys)[0] }}" />
+        </div>
+      {% elseif theme_config.menu.branding.mode == "name" %}
+        <div class="name">
+          {{ theme_config.menu.branding.name }}
+        </div>
+      {% else %}
+        <div class="logo">
+          <img src="/{{ (theme_config.menu.branding.logo|keys)[0] }}" />
+        </div>
+        <div class="name">
+          {{ theme_config.menu.branding.name }}
+        </div>
+      {% endif %}
+    </a>
+  </div>
+{% endif %}
+
+{% block login %}
+
+  {% if page.header.menu.login == "disabled" %}
+  {% elseif page.header.menu.login == "enabled" or theme_config.menu.login.enabled %}
+    {% set loggedin = grav.user.username ? 'loggedin' : 'loggedout' %}
+    <div class="login {{loggedin}}">
+      {% if grav.user.username %}
+        <div class="welcome">
+          {{ 'PLUGIN_LOGIN.WELCOME'|t }} <strong>{{ grav.user.fullname ?: grav.user.username }}</strong>
+        </div>
+        <div class="logoutlink">
+          <a class="logout" href="{{ uri.addNonce((base_url_relative ~ uri.path)|trim('/') ~ '/task' ~ config.system.param_sep ~ 'login.logout', 'logout-form', 'logout-nonce') }}"><i class="fa fa-unlock-alt" aria-hidden="true"></i> {{ 'PLUGIN_LOGIN.BTN_LOGOUT'|t }}</a>
+        </div>
+      {% else %}
+        <a href="{{ config.plugin.login.route ? config.plugin.login.route : '/login' }}">
+          <i class="fa fa-lock" aria-hidden="true"></i> Login
+        </a>
+      {% endif %}
+    </div>
+  {% endif %}
+
+{% endblock login %}
+
+{% block navigation %}
+  <div class="navigation">
+    <ul class="vertical menu" data-accordion-menu>
+      {{ navigation.nav(pages) }}
+      {% for mitem in site.menu %}
+        <li>
+          <a href="{{ mitem.url }}">
+            {% if mitem.icon %}
+              <i class="fa fa-{{ mitem.icon }}"></i>
+            {% endif %}
+            {{ mitem.text }}
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+{% endblock %}
+
+{% macro nav(page) %}
+  {% for p in page.children.visible %}
+    {% set current_page = (p.active or p.activeChild) ? 'selected' : '' %}
+    {% if p.children.visible.count > 0 and theme_config.menu.dropdown.enabled %}
+      <li class="{{current_page}}">
+        <a href="{{ p.url }}">{{ p.menu }}</a>
+        <ul>
+          {{ _self.nav(p) }}
+        </ul>
+      </li>
+    {% else %}
+      <li class="{{current_page}}">
+        <a href="{{ p.url }}"><i class="fa fa-chevron-right"></i>{{ p.menu }}</a>
+      </li>
+    {% endif %}
+  {% endfor %}
+{% endmacro %}
