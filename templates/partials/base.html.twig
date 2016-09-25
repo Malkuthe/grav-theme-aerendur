@@ -86,9 +86,11 @@
 
         {% if page.header.menu.mobile.enabled == "disabled" %}
         {% elseif page.header.menu.mobile.enabled == "enabled" or theme_config.menu.mobile.enabled %}
-          <div class="menu-wrapper {{ 'hide-for-' ~ theme_config.menu.mobile.breakpoint }}">
-            {% include 'partials/mobile-menu-bar.html.twig' %}
-          </div>
+          <a href="#" style="display:block;width:100%;" data-toggle="mobilemenu">
+            <div class="mobile-menu-wrapper menu-wrapper {{ 'hide-for-' ~ theme_config.menu.mobile.breakpoint }}">
+              {% include 'partials/mobile-menu-bar.html.twig' %}
+            </div>
+          </a>
         {% endif %}
 
       {% endblock %}

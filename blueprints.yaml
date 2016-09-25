@@ -21,62 +21,6 @@ form:
       active: 1
       fields:
 
-        general_info:
-          type: tab
-          title: Info
-          fields:
-
-            theme_info_title:
-              type: section
-              title: Theme Summary
-              underline: true
-
-              fields:
-                columns:
-                  type: columns
-                  fields:
-                    column1:
-                      type: column
-                      fields:
-
-                        theme_links:
-                          type: display
-                          label: |
-                            <p style="padding-left:0;">The <em>Aerendur</em> theme is built on the <a href="http://foundation.zurb.com/" target="_blank">Zurb Foundation</a> framework and is designed for optimum customizability. All Zurb Foundation components can be toggled on and off at your discretion in order to create a more efficient website.</p><p style="padding-left:0;">There is currently not a demo for the Aerendur theme as it is still in development, however, moving forward, there should be one available.</p>
-
-                    column2:
-                      type: column
-                      fields:
-                        theme_info:
-                          type: display
-                          label: Screenshot Placeholder
-
-            foundation_info_title:
-              type: section
-              title: Zurb Foundation
-              underline: true
-
-              fields:
-                columns:
-                  type: columns
-                  fields:
-                    column1:
-                      type: column
-                      fields:
-
-                        foundation_image:
-                          type: display
-                          label: <p style="text-align:center;padding-left:0;"><img src="../../user/themes/aerendur/zurb-foundation-macbook.png" alt="Zurb Foundation" style="width:100%;"></p>
-
-                    column2:
-                      type: column
-                      fields:
-
-                        foundation_info:
-                          type: display
-                          label: |
-                            <p style="padding-left:0;"><em>"Foundation is semantic, readable, flexible, and completely customizable. We're constantly adding new resources and code snippets, including these handly HTML templates to help get you started!"</em></p>
-                            <p style="padding-left:0;"><a href="http://foundation.zurb.com/" target="_blank">Foundation Homepage <i class="fa fa-external-link"></i></a><br /><a href="http://foundation.zurb.com/sites/docs/" target="_blank">Foundation Docs <i class="fa fa-external-link"></i></a></p>
         customization:
           type: tab
           title: Customization
@@ -91,15 +35,15 @@ form:
                 customization.global.landscape_background:
                   type: file
                   label: Background Image
-                  destination: 'user/themes/aerendur/images/'
-                  blueprint: 'themes.aerendur'
+                  destination: 'user/themes/dreamspherebooks/images/'
+                  blueprint: 'themes.dreamspherebooks'
                   accept:
                     - image/*
                 customization.global.portrait_background:
                   type: file
                   label: Background Image(Small)
-                  destination: 'user/themes/aerendur/images/'
-                  blueprint: 'themes.aerendur'
+                  destination: 'user/themes/dreamspherebooks/images/'
+                  blueprint: 'themes.dreamspherebooks'
                   accept:
                     - image/*
                 customization.global.background_blur.enabled:
@@ -114,7 +58,7 @@ form:
                     type: bool
                 customization.global.background_color:
                   type: colorpicker
-                  label: Background colours
+                  label: Background Colour
                   default: '#aecef2'
                   validate:
                     type: text
@@ -195,6 +139,23 @@ form:
                 'large': 'Large'
                 'medium': 'Medium'
                 'all': 'Mobile for All'
+            menu.mobile.title:
+              type: text
+              label: Mobile Menu Bar Title
+              size: small
+              default: 'Menu'
+              validate:
+                type: text
+            menu.mobile.icon.enabled:
+              type: toggle
+              label: Enable Mobile Menu Bar Icon
+              highlight: 1
+              default: 1
+              options:
+                1: Enabled
+                0: Disabled
+              validate:
+                type: bool
             menu.mobile.position:
               type: select
               label: Mobile Navigation Menu Position
@@ -202,11 +163,21 @@ form:
               size: small
               default: left
               options:
-                'position-left': 'Left'
-                'position-right': 'Right'
+                'left': 'Left'
+                'right': 'Right'
             menu.enabled:
               type: toggle
               label: Menu
+              highlight: 1
+              default: 1
+              options:
+                1: Enabled
+                0: Disabled
+              validate:
+                type: bool
+            menu.enabled:
+              type: toggle
+              label: Mobile Menu
               highlight: 1
               default: 1
               options:
@@ -257,8 +228,8 @@ form:
             menu.branding.logo:
               type: file
               label: Branding Logo
-              destination: 'user/themes/aerendur/images/'
-              blueprint: 'themes.aerendur'
+              destination: 'user/themes/dreamspherebooks/images/'
+              blueprint: 'themes.dreamspherebooks'
               accept:
                 - image/*
             menu.branding.name:
@@ -267,45 +238,67 @@ form:
               validate:
                 type: text
 
-            footer_options_title:
+            footer.title:
               type: section
               title: Footer Options
               underline: true
 
-            footer_options_tabs:
-              type: tabs
+            footer.enabled:
+              type: toggle
+              label: Enable Footer
+              highlight: 1
+              default: 1
+              options:
+                1: Enabled
+                0: Disabled
+              validate:
+                type: bool
+            footer.attribution.enabled:
+              type: toggle
+              label: Enable Attribution
+              highlight: 1
+              default: 1
+              options:
+                1: Enabled
+                0: Disabled
+              validate:
+                type: bool
+            footer.attribution.content:
+              name: content
+              type: markdown
+              label: Footer Attribution
+              validate:
+                type: textarea
+            footer.content:
+              type: list
+              label: Footer Contents
               fields:
+                .panel:
+                  type: markdown
+                  label: Contents
+                  validate:
+                    type: textarea
 
-                general_footer_options_tab:
-                  type: tab
-                  title: General
-                  fields:
+            footer_custom_options_itle:
+              type: section
+              title: Custom Footer Options
+              underline: true
 
-                    general_footer_options_title:
-                      type: section
-                      title: General Footer Options
-                      underline: true
-
-                    footer.enabled:
-                      type: toggle
-                      label: Enable Footer
-                      highlight: 1
-                      default: 1
-                      options:
-                        1: Enabled
-                        0: Disabled
-                      validate:
-                        type: bool
-                    footer.content:
-                      label: Footer Content
-                      type: list
-                      fields:
-                        .header:
-                          type: text
-                          label: Header
-                        .content:
-                          type: markdown
-                          label: Content
+            footer.custom_html.enabled:
+              type: toggle
+              label: Enable Custom Footer HTML
+              highlight: 1
+              default: 0
+              options:
+                1: Enabled
+                0: Disabled
+              validate:
+                type: bool
+            footer.custom_html.content:
+              type: markdown
+              label: Custom Footer HTML
+              validate:
+                type: textarea
 
 
         javascript_options:
@@ -469,6 +462,16 @@ form:
                         foundation_reveal_js.enabled:
                           type: toggle
                           label: Reveal
+                          highlight: 1
+                          default: 0
+                          options:
+                            1: Enabled
+                            0: Disabled
+                          validate:
+                            type: bool
+                        foundation_tabs_js.enabled:
+                          type: toggle
+                          label: Tabs
                           highlight: 1
                           default: 0
                           options:
