@@ -1,14 +1,12 @@
 /**
  * Foundation for Sites by ZURB
- * Version 6.2.3
+ * Version 6.1.2
  * foundation.zurb.com
  * Licensed under MIT Open Source
  */
 .is-drilldown {
   position: relative;
   overflow: hidden; }
-  .is-drilldown li {
-    display: block !important; }
 
 .is-drilldown-submenu {
   position: absolute;

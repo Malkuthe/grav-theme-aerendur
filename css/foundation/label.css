@@ -1,6 +1,6 @@
 /**
  * Foundation for Sites by ZURB
- * Version 6.2.3
+ * Version 6.1.2
  * foundation.zurb.com
  * Licensed under MIT Open Source
  */
@@ -20,9 +20,9 @@
   .label.success {
     background: #3adb76;
     color: #fefefe; }
-  .label.warning {
-    background: #ffae00;
-    color: #fefefe; }
   .label.alert {
     background: #ec5840;
+    color: #fefefe; }
+  .label.warning {
+    background: #ffae00;
     color: #fefefe; }

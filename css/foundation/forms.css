@@ -1,6 +1,6 @@
 /**
  * Foundation for Sites by ZURB
- * Version 6.2.3
+ * Version 6.1.2
  * foundation.zurb.com
  * Licensed under MIT Open Source
  */
@@ -35,9 +35,6 @@ textarea {
   textarea[rows] {
     height: auto; }
 
-input::placeholder,
-textarea::placeholder {
-  color: #cacaca; }
 input:disabled, input[readonly],
 textarea:disabled,
 textarea[readonly] {
@@ -65,12 +62,9 @@ input[type='search'] {
   margin-right: 1rem;
   margin-bottom: 0;
   vertical-align: baseline; }
-  [type='checkbox'] + label[for],
-  [type='radio'] + label[for] {
-    cursor: pointer; }
 
 label > [type='checkbox'],
-label > [type='radio'] {
+label > [type='label'] {
   margin-right: 0.5rem; }
 
 [type='file'] {
@@ -91,7 +85,7 @@ label {
   margin-top: -0.5rem;
   font-size: 0.8125rem;
   font-style: italic;
-  color: #0a0a0a; }
+  color: #333; }
 
 .input-group {
   display: table;
@@ -103,20 +97,19 @@ label {
     border-radius: 0 0 0 0; }
 
 .input-group-label, .input-group-field, .input-group-button {
-  margin: 0;
-  white-space: nowrap;
   display: table-cell;
+  margin: 0;
   vertical-align: middle; }
 
 .input-group-label {
   text-align: center;
+  width: 1%;
+  height: 100%;
   padding: 0 1rem;
   background: #e6e6e6;
   color: #0a0a0a;
   border: 1px solid #cacaca;
-  white-space: nowrap;
-  width: 1%;
-  height: 100%; }
+  white-space: nowrap; }
   .input-group-label:first-child {
     border-right: 0; }
   .input-group-label:last-child {
@@ -127,18 +120,15 @@ label {
   height: 2.5rem; }
 
 .input-group-button {
+  height: 100%;
   padding-top: 0;
   padding-bottom: 0;
   text-align: center;
-  height: 100%;
   width: 1%; }
   .input-group-button a,
   .input-group-button input,
   .input-group-button button {
     margin: 0; }
-
-.input-group .input-group-button {
-  display: table-cell; }
 
 fieldset {
   border: 0;
@@ -172,12 +162,11 @@ select {
   border-radius: 0;
   -webkit-appearance: none;
   -moz-appearance: none;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' version='1.1' width='32' height='24' viewBox='0 0 32 24'><polygon points='0,0 32,0 16,24' style='fill: rgb%28138, 138, 138%29'></polygon></svg>");
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="32" height="24" viewBox="0 0 32 24"><polygon points="0,0 32,0 16,24" style="fill: rgb%2851, 51, 51%29"></polygon></svg>');
   background-size: 9px 6px;
-  background-position: right -1rem center;
+  background-position: right center;
   background-origin: content-box;
-  background-repeat: no-repeat;
-  padding-right: 1.5rem; }
+  background-repeat: no-repeat; }
   @media screen and (min-width: 0\0) {
     select {
       background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAYCAYAAACbU/80AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAIpJREFUeNrEkckNgDAMBBfRkEt0ObRBBdsGXUDgmQfK4XhH2m8czQAAy27R3tsw4Qfe2x8uOO6oYLb6GlOor3GF+swURAOmUJ+RwtEJs9WvTGEYxBXqI1MQAZhCfUQKRzDMVj+TwrAIV6jvSUEkYAr1LSkcyTBb/V+KYfX7xAeusq3sLDtGH3kEGACPWIflNZfhRQAAAABJRU5ErkJggg=="); } }
@@ -187,8 +176,7 @@ select {
   select::-ms-expand {
     display: none; }
   select[multiple] {
-    height: auto;
-    background-image: none; }
+    height: auto; }
 
 .is-invalid-input:not(:focus) {
   background-color: rgba(236, 88, 64, 0.1);
