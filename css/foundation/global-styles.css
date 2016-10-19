@@ -1,6 +1,6 @@
 /**
  * Foundation for Sites by ZURB
- * Version 6.2.3
+ * Version 6.1.2
  * foundation.zurb.com
  * Licensed under MIT Open Source
  */
@@ -256,7 +256,7 @@ input[type="submit"] {
  */
 button[disabled],
 html input[disabled] {
-  cursor: not-allowed; }
+  cursor: default; }
 
 /**
  * Remove inner padding and border in Firefox 4+.
@@ -368,8 +368,8 @@ html {
   box-sizing: border-box; }
 
 *,
-*::before,
-*::after {
+*:before,
+*:after {
   box-sizing: inherit; }
 
 body {
@@ -418,8 +418,6 @@ button {
   border: 0;
   border-radius: 0;
   line-height: 1; }
-  [data-whatinput='mouse'] button {
-    outline: 0; }
 
 .is-visible {
   display: block !important; }

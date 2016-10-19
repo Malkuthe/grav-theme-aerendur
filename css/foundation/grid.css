@@ -1,6 +1,6 @@
 /**
  * Foundation for Sites by ZURB
- * Version 6.2.3
+ * Version 6.1.2
  * foundation.zurb.com
  * Licensed under MIT Open Source
  */
@@ -17,7 +17,6 @@
     padding-left: 0;
     padding-right: 0; }
   .row .row {
-    max-width: none;
     margin-left: -0.625rem;
     margin-right: -0.625rem; }
     @media screen and (min-width: 40em) {
@@ -34,10 +33,10 @@
       margin-right: auto; }
 
 .column, .columns {
-  width: 100%;
-  float: left;
   padding-left: 0.625rem;
-  padding-right: 0.625rem; }
+  padding-right: 0.625rem;
+  width: 100%;
+  float: left; }
   @media screen and (min-width: 40em) {
     .column, .columns {
       padding-left: 0.9375rem;
@@ -298,7 +297,7 @@
 .small-collapse > .column, .small-collapse > .columns {
   padding-left: 0;
   padding-right: 0; }
-.small-collapse .row, .expanded.row .small-collapse.row {
+.small-collapse .row {
   margin-left: 0;
   margin-right: 0; }
 
@@ -563,7 +562,7 @@
   .medium-collapse > .column, .medium-collapse > .columns {
     padding-left: 0;
     padding-right: 0; }
-  .medium-collapse .row, .expanded.row .medium-collapse.row {
+  .medium-collapse .row {
     margin-left: 0;
     margin-right: 0; }
 
@@ -827,7 +826,7 @@
   .large-collapse > .column, .large-collapse > .columns {
     padding-left: 0;
     padding-right: 0; }
-  .large-collapse .row, .expanded.row .large-collapse.row {
+  .large-collapse .row {
     margin-left: 0;
     margin-right: 0; }
 

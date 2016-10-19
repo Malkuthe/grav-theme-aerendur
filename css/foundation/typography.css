@@ -1,6 +1,6 @@
 /**
  * Foundation for Sites by ZURB
- * Version 6.2.3
+ * Version 6.1.2
  * foundation.zurb.com
  * Licensed under MIT Open Source
  */
@@ -295,7 +295,7 @@ kbd {
 
   pre,
   blockquote {
-    border: 1px solid #8a8a8a;
+    border: 1px solid #999;
     page-break-inside: avoid; }
 
   thead {
