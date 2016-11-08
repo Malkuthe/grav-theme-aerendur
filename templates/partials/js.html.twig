@@ -72,4 +72,5 @@
 {% if theme_config.foundation_util_triggers_js.enabled %}
   {% do assets.addJs('theme://bower_components/foundation-sites/js/foundation.util.triggers.js',{'priority':102, 'group':'bottom'}) %}
 {% endif %}
+{% do assets.addJs('theme://js/template.js',{'priority':99,'loading':'async','group':'bottom'}) %}
 {% do assets.addJs('theme://js/app.js',{'priority':99,'loading':'async','group':'bottom'}) %}

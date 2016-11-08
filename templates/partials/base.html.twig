@@ -45,30 +45,40 @@
 {% endblock head%}
 </head>
 <body id="top" class="{{ page.header.body_classes }}">
-  <div class="background-image-container">
-    <div class="background-image-src">
+
+  {% block background %}
+
+    <div class="background-image-container">
+      <div class="background-image-src">
+      </div>
+      {% if page.header.background_blur == "disabled" %}
+      {% elseif page.header.background_blur == "enabled" or theme_config.customization.global.background_blur.enabled %}
+        <div class="background-image-src blurred-image">
+        </div>
+      {% endif %}
+      {% if page.header.background_gradient == "disabled" %}
+      {% elseif page.header.background_gradient == "enabled" or theme_config.customization.global.background_blur.enabled %}
+        <div class="background-gradient">
+        </div>
+      {% endif %}
     </div>
-    {% if page.header.background_blur == "disabled" %}
-    {% elseif page.header.background_blur == "enabled" or theme_config.customization.global.background_blur.enabled %}
-      <div class="background-image-src blurred-image">
-      </div>
-    {% endif %}
-    {% if page.header.background_gradient == "disabled" %}
-    {% elseif page.header.background_gradient == "enabled" or theme_config.customization.global.background_blur.enabled %}
-      <div class="background-gradient">
-      </div>
-    {% endif %}
-  </div>
+
+  {% endblock background %}
 
 <div class="off-canvas-wrapper">
   <div class="off-canvas-wrapper-inside" data-off-canvas-wrapper>
 
-    {% if page.header.menu.mobile.enabled == "disabled" %}
-    {% elseif page.header.menu.mobile.enabled == "enabled" or theme_config.menu.mobile.enabled %}
-      <div class="off-canvas {{ 'position-' ~ theme_config.menu.mobile.position }} hide-for-{{ theme_config.menu.mobile.breakpoint }}" id="mobilemenu" data-off-canvas>
-        {% include 'partials/mobile-menu.html.twig' %}
-      </div>
-    {% endif %}
+    {% block mobilenav %}
+
+      {% if page.header.menu.mobile.enabled == "disabled" %}
+      {% elseif page.header.menu.mobile.enabled == "enabled" or theme_config.menu.mobile.enabled %}
+        <div class="off-canvas {{ 'position-' ~ theme_config.menu.mobile.position }} hide-for-{{ theme_config.menu.mobile.breakpoint }}" id="mobilemenu" data-off-canvas>
+          {% include 'partials/mobile-menu.html.twig' %}
+        </div>
+      {% endif %}
+
+    {% endblock mobilenav %}
+
     <div class="off-canvas-content" data-off-canvas-content>
 
       {% block header %}
