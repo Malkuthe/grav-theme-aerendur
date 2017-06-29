@@ -19,10 +19,10 @@
           {% do assets.addCss('theme://css/aerendur.css',110) %}
         {% endif %}
         {% if theme_config.css_child_theme.enabled or theme_config.css_child_theme.enabled is not defined %}
-          {% do assets.addCss('theme://css/template.css',109) %}
+          {% do assets.addCss('theme://css/template.css',2) %}
         {% endif %}
         {% if theme_config.css_custom.enabled %}
-          {% do assets.addCss('theme://css/custom.css',10) %}
+          {% do assets.addCss('theme://css/custom.css',1) %}
         {% endif %}
         {% if page.header.animate_css == "disabled" %}
         {% elseif page.header.animate_css == "enabled" or theme_config.animate_css.enabled %}
@@ -37,6 +37,8 @@
           {% include('css/customization.css.twig') %}
         {% endset %}
         {% do assets.addInlineCss(customization,110) %}
+        {% block child_stylesheets %}
+        {% endblock %}
     {% endblock %}
     {{ assets.css() }}
     {% do assets.addJs('jquery', 100) %}
@@ -146,6 +148,8 @@
         {% do assets.addJS('theme://js/wow.min.js',{'priority':101,'group':'bottom'}) %}
         {% do assets.addInlineJS('var wow = new WOW(); wow.init();',{'priority':100,'group':'bottom'}) %}
       {% endif %}
+      {% block child_javascripts %}
+      {% endblock %}
     {% endblock %}
     {{ assets.js('bottom') }}
 {% endblock %}
